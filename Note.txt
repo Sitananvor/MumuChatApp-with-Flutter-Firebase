@@ -1,0 +1,169 @@
+1. Firebase คือ?
+	: Platform ที่พัฒนาโดย Google โดยรวบรวมเครื่องมือต่าง ๆ สำหรับการจัดการในส่วนของ Backend หรือ Server side พัฒนาแอปพลิเคชันในการสร้างแอปทั้งบนมือถือและเว็บ โดยให้บริการโซลูชันที่ครอบคลุมตั้งแต่การพัฒนาแอปไปจนถึงการดูแลและขยายแอพ
+	- คุณสมบัติ และบริการ
+		1. Databases
+			- Firestore: ฐานข้อมูล NoSQL แบบเรียลไทม์ที่ใช้สำหรับการจัดเก็บและซิงค์ข้อมูลระหว่างผู้ใช้หลายคนในเวลาจริง
+					   : เก็บข้อมูลในรูปแบบ Collections (กลุ่มของ Documents ที่เก็บข้อมูลในรูปแบบโครงสร้าง) และ Documents
+					   		Collection: user	// "user" เป็นชื่อของ Collection ที่ต้องการอ้างถึง หากไม่มี Collection ชื่อนี้ ระบบจะสร้าง Collection นี้โดยอัตโนมัติเมื่อเพิ่มเอกสารเข้าไป
+								|
+                                └── Document ID: "user123"
+									{ "name": "John", "email": "john@example.com" }
+								|
+                                └──Document ID: "user456"
+									{ "name": "Alice", "email": "alice@example.com" }
+                            groups (Collection - เหมือนตารางใน SQL)
+                            |
+                            └── "12345" (Document - เหมือนแถวใน SQL)
+                                    |
+                                    ├── admin: "JohnDoe" (Field - เหมือนคอลัมน์ใน SQL)
+                                    ├── members: ["User1", "User2"] (Field)
+                                    └── messages (Sub-collection)
+                                        |
+                                        ├── "msg1" (Document)
+                                        |     ├── sender: "User1" (Field)
+                                        |     ├── message: "Hello!" (Field)
+                                        |     └── time: Timestamp (Field)
+                                        └── "msg2" (Document)
+                                            ├── sender: "User2" (Field)
+                                            ├── message: "Hi!" (Field)
+                                            └── time: Timestamp (Field)
+			- Realtime Database: ฐานข้อมูล NoSQL ที่ซิงค์ข้อมูลแบบเรียลไทม์ระหว่างผู้ใช้ในแอปพลิเคชัน เช่น แอปแชท
+            - Data structured is a JSON tree
+		2.Firebase Authentication: ช่วยให้ผู้ใช้สามารถลงทะเบียนหรือเข้าสู่ระบบด้วยวิธีการต่างๆ เช่น อีเมล, เบอร์โทรศัพท์, Google, Facebook, GitHub 
+		3.Firebase Storage: สำหรับจัดเก็บไฟล์ เช่น รูปภาพ, วิดีโอ, และไฟล์อื่นๆ โดยสามารถเข้าถึงได้อย่างปลอดภัยจากแอป
+		4.Firebase Hosting: ให้บริการโฮสติ้งแบบ Static สำหรับเว็บแอปพลิเคชันที่รองรับเนื้อหาแบบ HTML, CSS, JavaScript และภาพต่างๆ
+		5.Cloud Functions: ช่วยให้นักพัฒนาสามารถเขียนฟังก์ชันที่ทำงานในคลาวด์เพื่อจัดการเหตุการณ์ต่างๆ เช่น การเปลี่ยนแปลงในฐานข้อมูล หรือการยืนยันตัวตน
+		6.Cloud Messaging: Firebase Cloud Messaging (FCM) สำหรับการส่งการแจ้งเตือนแบบ Push Notification ไปยังแอปพลิเคชันบน Android, iOS และเว็บ
+		7.Analytics & Performance Monitoring
+			- Firebase Analytics: ให้ข้อมูลการวิเคราะห์เชิงลึกของการใช้งานแอป
+			- Performance Monitoring: ช่วยในการตรวจสอบประสิทธิภาพการทำงานของแอปพลิเคชันแบบเรียลไทม์
+		8.Remote Config: ช่วยให้คุณสามารถปรับแต่งและอัปเดตพฤติกรรมและหน้าตาของแอปได้จากระยะไกล โดยไม่ต้องเผยแพร่เวอร์ชันใหม่ของแอป
+	- ข้อดีของ Firebase:
+		1.ครบวงจร: มีทุกอย่างตั้งแต่การจัดเก็บข้อมูล, การจัดการผู้ใช้, จนถึงการดูแลระบบการแจ้งเตือน
+		2.ใช้งานง่าย: มี SDK ที่รองรับหลายแพลตฟอร์ม ทั้ง iOS, Android, และเว็บ
+		3.การซิงค์แบบเรียลไทม์: Firebase มีระบบซิงค์ข้อมูลแบบเรียลไทม์ที่ช่วยให้ข้อมูลอัปเดตทันทีระหว่างผู้ใช้
+	- ข้อเสียของ Firebase:
+		1.จำกัดสำหรับแอปขนาดใหญ่: Firebase อาจไม่เหมาะสำหรับแอปที่มีโครงสร้างข้อมูลที่ซับซ้อนหรือขนาดใหญ่มาก
+		2.การล็อกอินในระบบ (Vendor Lock-in): การใช้ Firebase ทำให้แอปขึ้นอยู่กับโครงสร้างพื้นฐานของ Google
+		
+----------------------------------------------
+
+พัฒนาแอป Flutter บน Android ไม่จำเป็นต้องเขียนโค้ดในโฟลเดอร์ android หรือ ios โดยตรง แต่โครงสร้างของโปรเจกต์ Flutter จะมีทั้งโฟลเดอร์ android และ ios ซึ่งแต่ละโฟลเดอร์มีหน้าที่ที่แตกต่างกัน:
+	1.โฟลเดอร์ lib: คือโฟลเดอร์หลักที่เขียนโค้ด Dart สำหรับแอป Flutter โค้ดทั้งหมดสำหรับ UI และฟังก์ชันการทำงานจะอยู่ที่นี่
+	2.โฟลเดอร์ android: ใช้สำหรับการตั้งค่าและคอนฟิกที่เฉพาะเจาะจงกับแพลตฟอร์ม Android เช่น การตั้งค่า Gradle, การจัดการกับ permissions, และการเพิ่ม dependencies ที่จำเป็นสำหรับ Android
+					   โดยสามารถเข้าไปที่ไฟล์ android/app/build.gradle เพื่อทำการปรับแต่งและตั้งค่าเพิ่มเติมสำหรับแอป Android 
+	3.โฟลเดอร์ ios: ใช้สำหรับการตั้งค่าและคอนฟิกที่เฉพาะเจาะจงกับแพลตฟอร์ม iOS เช่น การตั้งค่า Xcode project, การจัดการกับ permissions, และการเพิ่ม dependencies ที่จำเป็นสำหรับ iOS
+     					โดยสามารถเข้าไปที่ไฟล์ ios/Runner.xcodeproj เพื่อปรับแต่งการตั้งค่าต่างๆ สำหรับแอป iOS  
+	สรุป 1.เขียนโค้ดหลักของในโฟลเดอร์ lib โดยโค้ดที่เขียนจะทำงานทั้งบน Android และ iOS
+		2.การตั้งค่าเฉพาะแพลตฟอร์มสามารถทำได้ในโฟลเดอร์ android และ ios หากต้องการปรับแต่งการทำงานหรือความต้องการเฉพาะในแต่ละแพลตฟอร์ม
+
+----------------------------------------------
+
+โครงสร้างของ StatefulWidget
+1. ตัว Widget (LoginPage):
+	- ระบุลักษณะของ Widget ว่ามี State (สถานะ) ที่เปลี่ยนแปลงได้
+	- ไม่จัดการการเปลี่ยนแปลงของข้อมูลโดยตรง
+2. ตัว State (_LoginPageState):
+	- เป็นที่ที่ข้อมูลหรือสถานะที่เปลี่ยนแปลงได้ถูกจัดเก็บและจัดการ
+	- รับผิดชอบการอัปเดต UI เมื่อสถานะเปลี่ยนแปลง
+
+----------------------------------------------
+
+@override: เป็นการบอกว่าเมธอดนี้กำลังเขียนทับ (override) เมธอดที่สืบทอดมาจากคลาส State ของ Flutter
+initState(): เมธอดที่ Flutter เรียกใช้ครั้งเดียวเมื่อวิดเจ็ตถูกสร้างขึ้นครั้งแรก ใช้สำหรับการกำหนดค่าเริ่มต้นหรือเตรียมการตั้งค่าใด ๆ
+เรียก super.initState() เพื่อเรียกการทำงานเดิมจากคลาสแม่ (superclass)
+
+----------------------------------------------
+
+Future: ประเภทข้อมูลที่แสดงถึงค่าที่จะถูกส่งกลับในอนาคต (asynchronous operation)
+	    - เมื่อมีการทำงานที่อาจใช้เวลานาน เช่น การดึงข้อมูลจากฐานข้อมูลหรือ API จะส่งกลับเป็น Future เพื่อให้สามารถทำงานแบบอะซิงโครนัส โดยสามารถใช้ await เพื่อรอให้ Future เสร็จสิ้นก่อนที่จะไปทำงานต่อ
+		- การใช้ await จำเป็นต้องใช้ร่วมกับฟังก์ชันที่ถูกประกาศด้วย async เพื่อให้สามารถทำงานแบบอะซิงโครนัส
+			- async: ระบุว่าฟังก์ชันนี้จะทำงานแบบอะซิงโครนัส และสามารถใช้ await ในการรอผลลัพธ์จาก Future ได้
+			- await ใช้เพื่อรอผลลัพธ์จาก Future โดยไม่ต้องทำให้แอปหยุดทำงาน และจะรอจนกว่า Future จะเสร็จสิ้น และจะคืนค่าให้กับตัวแปรที่กำหนด
+
+----------------------------------------------
+
+SharedPreferences: จัดเก็บข้อมูลในรูปแบบ Key-Value อย่างถาวรในแอปพลิเคชันในอุปกรณ์ของผู้ใช้ ทำให้สามารถเรียกดูข้อมูลได้แม้ว่าจะปิดแอปไปแล้ว 
+				   ข้อมูลที่เก็บจะยังคงอยู่จนกว่าจะถูกลบหรือเขียนทับ แต่ข้อมูลที่จัดเก็บจะถูกลบหากแอปพลิเคชันถูกถอนการติดตั้ง
+
+class MyApp extends StatefulWidget {  
+        //ระบุตัวตนของ widget แต่ละตัวได้ชัดเจนและไม่สับสนกับ widget อื่น โดยเฉพาะในกรณีที่ widget นั้นถูกสร้างขึ้นใหม่หรือย้ายตำแหน่งในโครงสร้าง UI ของแอป ตัวอย่างเช่น:
+        //ใน constructor: MyApp({Key? key}) กำหนดให้สามารถรับ key เป็นพารามิเตอร์ได้ เมื่อสร้าง MyApp widget โดยเราสามารถส่ง key นี้เข้าไปเมื่อเรียกใช้งาน MyApp เพื่อระบุ widget นี้เฉพาะเจาะจง
+        //ใน super constructor: super(key: key); จะส่ง key ที่ได้รับมาไปยังคลาสแม่ (ในที่นี้คือ StatefulWidget) เพื่อให้ widget นั้นมี key ตามที่กำหนด
+  const MyApp({Key? key}) : super(key: key); // Constructor 
+    
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+----------------------------------------------
+
+1. Stream >> สำหรับรับข้อมูลที่เปลี่ยนแปลงตลอดเวลา เช่น การอัปเดตแบบเรียลไทม์, ข้อมูลใน UI อัปเดตอัตโนมัติเมื่อฐานข้อมูลเปลี่ยน
+    : เป็นตัวแทนของข้อมูลที่ถูกส่งมาแบบต่อเนื่อง (Asynchronous) หรือเป็นการส่งข้อมูลในลำดับตามเวลา (Stream of Data) 
+    : อนุกรมของข้อมูล ที่จะถูกส่งมาเป็นชุด ๆ
+      - มักใช้ในการทำงานกับข้อมูลที่อาจเกิดการเปลี่ยนแปลงตามเวลาหรือข้อมูลที่ต้องรอการประมวลผล เช่น 
+            - ใช้ดึง/รับ/อัปเดตข้อมูลจาก Firebase (Firestore/Realtime Database): await ได้ โดยใช้คำสั่ง await for เพื่อรอและรับข้อมูลจาก Stream ได้ในลักษณะเชิงลำดับ (Asynchronous) โดยที่โค้ดจะไม่บล็อคการทำงานอื่น ๆ ในแอปพลิเคชันขณะรอการรับข้อมูลจาก Stream
+            - การดึงข้อมูลจาก API
+            - ใช้สำหรับการฟังเหตุการณ์ที่เกิดขึ้น (Event Listeners): listen  เพื่อฟังหรือรับข้อมูลที่ถูกส่งจาก Stream เมื่อข้อมูลใหม่พร้อมใช้งานใน Dart, เป็นวิธีหลักที่ใช้ในการจัดการกับข้อมูลใน Stream
+            - การจัดการข้อมูลแบบต่อเนื่อง เช่น การสตรีมเสียงหรือวิดีโอ
+
+2. Query & Snapshot >> องค์ประกอบที่ใช้ในการดึงและจัดการข้อมูลจากฐานข้อมูล (เช่น Firebase Firestore) ที่ทำงานกับ Document Database
+    2.1 Query >> สร้างเงื่อนไขค้นหาข้อมูล
+        : คำค้นหาที่ใช้เพื่อระบุข้อมูลหรือเอกสารที่ต้องการดึงจากฐานข้อมูล ใช้กำหนดเงื่อนไขการค้นหา เช่น เลือกเฉพาะเอกสารที่มีฟิลด์บางค่า หรือจัดเรียงข้อมูลตามลำดับ
+    2.2 Snapshot >> ผลลัพธ์ที่ได้จากการค้นหาหรือรับข้อมูล
+        : ผลลัพธ์ที่ได้จากการดึงข้อมูลตาม Query ที่กำหนดไว้ มีลักษณะเป็นภาพรวม (snapshot) ของข้อมูล ณ ขณะเวลานั้น และสามารถบอกได้ว่าเอกสารไหนถูกเพิ่ม, ลบ, หรืออัปเดตในฐานข้อมูล เมื่อทำงานร่วมกับ StreamBuilder เพื่อตรวจสอบการเปลี่ยนแปลง
+        - ประเภทของ Snapshot:
+            1. DocumentSnapshot: แทนข้อมูลของเอกสารเดี่ยว (หนึ่ง document)
+            2. QuerySnapshot: แทนข้อมูลของเอกสารหลายตัวที่ตรงกับ Query
+
+3. child                            vs.     children        >> กำหนด Widget ภายใน Container หรือ Layout
+    - ใช้เมื่อ widget รับได้เพียงหนึ่งตัว            - ใช้เมื่อ widget รับ widget ได้หลายตัว (ในเลเยอร์ซ้อนกัน)
+    - ประเภท: Widget                        - ประเภท: List<Widget>
+    - ตัวอย่าง: Container, Center             - ตัวอย่าง: Row, Column, Stack
+
+----------------------------------------------
+
+Development App & Website
+1.Understand Common Backend Tasks:
+- Authentication: Handle login states, encrypt passwords (e.g., using bcrypt).
+- Data Validation and Error Handling: Ensure data integrity, check for user input errors, and handle issues gracefully.
+- API Security: Protect your APIs with methods like authentication tokens (JWT, OAuth).
+
+2.How Users Log In, Sign Up, and Stay Logged In (Sessions or Tokens)
+- Sign-Up Process:
+	The app collects user data (like email and password) and sends it to the backend.
+	The backend server validates the data, hashes the password for security, and stores it in a database.
+	A unique identifier (user ID) is generated and saved for the user.
+- Log-In Process:
+	The user enters login credentials (username/email and password), which are sent to the backend.
+	The backend verifies the credentials by checking the stored data and comparing the hashed password.
+	If correct, a session or token is generated to keep the user logged in.
+- Staying Logged In:
+	Sessions: In traditional web applications, a session ID is created by the server and stored in the browser’s cookies. 
+	The session persists as long as it’s active or until the user logs out.
+	Tokens (like JWTs - JSON Web Tokens): The backend generates a token and sends it back to the client. 
+	The client stores this token locally (usually in local storage or cookies) and attaches it to future requests. 
+	The backend can then validate each request based on the token.
+
+3.How to Create APIs (Interface Between Backend and Frontend)
+- REST API (Representational State Transfer):
+	REST APIs are organized around resources and use HTTP methods (like GET, POST, PUT, DELETE).
+	A REST API might have endpoints like /login, /signup, /profile, and so on. Each endpoint performs a specific operation.
+	Example: A POST request to /login could trigger the backend to authenticate the user and return a token if successful.
+- GraphQL API:
+	Instead of fixed endpoints, GraphQL allows clients to specify exactly what data they need in a single request.
+	This flexibility can reduce the number of requests and is useful for complex frontends where different pages need different data.
+	Example: A client might requsest a uer’s profile with getUser(id: 123) { name, email, posts { title, content } }
+- API Development Workflow:
+	Design API Endpoints based on frontend requirements.
+	Implement Business Logic for each endpoint, specifying what data to retrieve, modify, or delete.
+	Test using tools like Postman to ensure each endpoint functions correctly.
+
+4.What is a Backend Framework?
+- A backend framework is a set of tools and libraries that streamline the development of server-side applications. They provide structures, guidelines, and pre-written code to handle common backend tasks, like routing, database connections, and authentication.
+- Backend frameworks save development time, ensure consistency, and help enforce best practices. They’re essential for creating reliable, scalable applications and APIs.
+- Some popular backend frameworks:
+	+ Node.js with Express: JavaScript-based, known for its flexibility and suitability for both small and large projects.
+	+ Django (Python): A full-featured framework with built-in features for handling authentication, database migrations, and templating.
+	+ Flask (Python): A lightweight Python framework, ideal for small applications or API services.
+	+ Ruby on Rails (Ruby): Known for its convention-over-configuration approach, Rails speeds up development by automating repetitive tasks.
+	+ Spring Boot (Java): Popular for enterprise-level applications, especially in Java, with a strong ecosystem and many built-in modules.

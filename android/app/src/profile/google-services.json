@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1055431016069",
+    "project_id": "mumuchatapp-21f05",
+    "storage_bucket": "mumuchatapp-21f05.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055431016069:android:ab636147a99ad207abb3ec",
+        "android_client_info": {
+          "package_name": "com.example.mumuchatapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC13Tor6Xfzd8hMPEWuNVnPRYi7rKH3008"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
