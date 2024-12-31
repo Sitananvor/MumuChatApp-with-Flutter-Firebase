@@ -4,7 +4,7 @@ This is a basic application and web browser project to practice and get an intro
 I am following the **Backslash Flutter** channel on YouTube for guidance (https://www.youtube.com/watch?v=Qwk5oIAkgnY&list=LL&index=70) and adapting some features to be more user-friendly, including a feature that allows users to upload a profile picture, which can be selected from the camera or gallery and removed if needed. The Firebase plan I’m using is the free plan.
 
 ## Each file have details:
-1. assets floder: contains resources used in the app, such as images. In this case, it contains pictures related to the login and register screens.
+1. assets folder: contains resources used in the app, such as images. In this case, it contains pictures related to the login and register screens.
 2. lib folder: 
 	- helper folder: 
 		- helper_function.dart: 
@@ -25,7 +25,7 @@ I am following the **Backslash Flutter** channel on YouTube for guidance (https:
 	- widgets folder: 
 		- group_tile.dart: 
 		- message_tile.dart: 
-	- main.dart: 
+	- main.dart: serves as the 'entry point' for the application. It contains the main() function, which is executed when the app starts running. This file handles initialization, including both Firebase Initialization (setting up Firebase for different platforms-web, android, and iOS) and ensuring Flutter's binding system is initialized before further setup (e.g., for Firebase). Second is application setup, which defines the root of the application by running runApp() with the top-level widget (MyApp). Third is state management; it uses a stateful widget (MyApp) to manage the user's login status and navigate to the appropriate page. Fourth is user authentication; it retrieves the logged-in status to determine which screen to display initially. Fifth is configures the application's theme, primary color for widgets and background color for the scaffold. Finally, it handles page navigation by deciding the initial screen based on the user's login status.
 3. build.gradle file: It's a crucial configuration file in Android Flutter projects and it comes in two primary forms: First, Project-Level (android/build.gradle), defines settings for the entire project, such as Gradle Version (: specifies the version of Gradle and the Android Gradle Plugin used to build the app.) and repositories (: defines repositories for dependencies). Second, Module-Level (android/app/build.gradle), configures settings specific to the app module,  including Application Configuration (: defines the application ID, version code, and version name), SDK Versions (: specifies the minimum and target SDK versions), dependencies (: Lists libraries or plugins e.g., Firebase, Retrofit), and build types (: configures build variants like debug and release).
 4. pubspec.ymal file: It's a basic project settings file. First, it's used to manage dependencies (add libraries or packages, e.g., Firebase packages, HTTP packages, state management packages). Second, it defines assets, such as pictures, JSON files, and fonts. Third, it specifies the environment—the SDK versions of Flutter and Dart that are supported. Finally, it defines metadata, which includes general information about the project, such as its name, description, and version.
 
