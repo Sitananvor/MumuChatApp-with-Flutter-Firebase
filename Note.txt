@@ -167,3 +167,14 @@ Development App & Website
 	+ Flask (Python): A lightweight Python framework, ideal for small applications or API services.
 	+ Ruby on Rails (Ruby): Known for its convention-over-configuration approach, Rails speeds up development by automating repetitive tasks.
 	+ Spring Boot (Java): Popular for enterprise-level applications, especially in Java, with a strong ecosystem and many built-in modules.
+
+----------------------------------------------
+
+Structure Folders
+	: Separate files into sections according to responsibility.
+	- lib: Contains all files and code related to the app's functionality. 
+	- pages: keep page files.
+	- widgets: Keeps custom UI components.
+	- models: keeps data models.
+	- services: Contains functions for connecting to APIs or Firebase.
+	- shared: Stores shared data or functions that can be used across the app eg. Constant or Helper
